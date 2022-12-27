@@ -1,0 +1,135 @@
+##===================== Worker 1 & Worker 2 =====================##
+
+sudo nano /etc/apt/sources.list
+
+### START Edit ###
+
+deb http://http.debian.net/debian jessie main contrib 
+deb-src http://http.debian.net/debian jessie main contrib 
+
+deb http://security.debian.org/ jessie/updates main contrib
+deb-src http://security.debian.org/ jessie/updates main contrib
+
+### END Edit ###
+
+sudo wget http://ftp.br.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2017.5~deb8u1_all.deb
+
+sudo dpkg -i debian-archive-keyring_2017.5~deb8u1_all.deb
+
+sudo aptitude search “~o”
+
+sudo apt-get update
+
+sudo apt-get upgrade
+
+sudo apt-get dist-upgrade
+
+sudo nano /etc/apt/sources.list
+
+### START Edit ###
+
+deb http://httpredir.debian.org/debian stretch main contrib non-free
+deb http://httpredir.debian.org/debian stretch-updates main contrib non-free
+deb http://security.debian.org stretch/updates main contrib non-free
+
+### END Edit ###
+
+sudo wget http://ftp.br.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2017.5+deb9u1_all.deb
+
+sudo dpkg -i debian-archive-keyring_2017.5+deb9u1_all.deb
+
+sudo apt-get update
+
+sudo apt-get upgrade
+
+sudo apt-get dist-upgrade
+
+cat /etc/os-release
+
+##===================== Worker 1 =====================##
+
+cd pox
+screen -d -m -S PoxScr ./pox.py forwarding.l2_learning
+
+screen -d -m -S MaxiNetFrontend MaxiNetFrontendServer
+screen -d -m -S MaxiNetWorker sudo MaxiNetWorker
+
+##===================== Worker 2 =====================##
+
+sudo screen -d -m -S MaxiNetWorker MaxiNetWorker
+MaxiNetStatus
+
+##===================== Worker 1 =====================##
+
+~/maxinet/Frontend/examples$ python simplePing.py 
+
+sudo apt-get update
+
+sudo apt-get install openjdk-8-jdk maven virtualenv libzmq3-dev python-dev
+
+git clone https://github.com/MaxiNet/netSLS.git
+
+cd netSLS
+
+cd network_emulator
+
+sudo nano setup_virtualenv.sh
+
+### START Edit ###
+
+pip uninstall Pyro4
+pip uninstall Pyro4
+pip install pyzmq tinyrpc==0.5 gevent==1.2.2 Pyro4==4.35 requests werkzeug wsgiref
+
+### END Edit ###
+
+./setup.sh
+
+##===================== Worker 1 & Worker 2 =====================##
+
+sudo apt update
+
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+
+From the virtual machine menu, click Devices -> “Insert Guest Additions CD Image”
+
+sudo mkdir -p /mnt/cdrom
+
+sudo mount /dev/cdrom /mnt/cdrom
+
+cd /mnt/cdrom
+
+sudo sh ./VBoxLinuxAdditions.run --nox11
+
+sudo reboot
+
+##===================== Running SLS =====================##
+
+The netSLS network emulator requires ssh access to all MaxiNet workers. Add the following content to ~/.ssh/config
+
+Host worker2
+  HostName 192.168.0.2
+and distribute an ssh key to all workers:
+
+ssh-keygen -f ~/.ssh/id_rsa -N ""
+ssh-copy-id worker1
+ssh-copy-id worker2
+
+Start the network emulator:
+
+cd ~/netSLS
+./network_emulator.sh
+
+You might want to check if the network emulator works properly first:
+
+cd ~/netSLS/network_emulator
+env/bin/python test/test_all_rpc.py
+
+Now start sls with a demo trace:
+
+cd ~/netSLS
+./sls.sh generator/medium.json
+
+##===================== VB Resize =====================##
+
+vboxmanage modifyhd "C:\Users\Jorgi Bolonhezi\VirtualBox VMs\MaxiNet Worker 2\MaxiNet-disk2.vdi" --resize 24576

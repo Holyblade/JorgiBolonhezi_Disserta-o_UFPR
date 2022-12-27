@@ -14,8 +14,8 @@ Dissertação apresentada como requisito parcial à obtenção do grau de Mestre
 
 **Para informações adicionais sobre as ferramentas de simulação e tecnologias utilizadas na pesquisa veja:**
 
--[**NetSLS**](https://github.com/Holyblade/netSLS)
--[**MaxiNet**](https://github.com/Holyblade/MaxiNet)
--[**Hadoop**](https://github.com/Holyblade/hadoop)
+- [**NetSLS**](https://github.com/Holyblade/netSLS)
+- [**MaxiNet**](https://github.com/Holyblade/MaxiNet)
+- [**Hadoop**](https://github.com/Holyblade/hadoop)
 
 ***NOTA:*** *As informações contidas na dissertação são resultados da nossa pesquisa Reduzindo o consumo de energia do Hadoop 3.x MapReduce através do Energy Efficient Ethernet, do projeto Computação e Comunicação Verde para Processamento de Big Data financiado pelo CNPq - Conselho Nacional de Desenvolvimento Científico e Tecnológico.*
